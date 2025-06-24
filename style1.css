@@ -1,0 +1,250 @@
+/* General body styling for background and layout */
+body {
+    font-family: 'Inter', Arial, sans-serif;
+    background: linear-gradient(135deg, #ffffff 0%, #e2e2fc 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    animation: backgroundPulse 15s infinite alternate ease-in-out; /* Subtle background animation */
+}
+
+/* Calculator container styling */
+.calculator {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1), 0 0 60px rgba(0, 0, 0, 0.05); /* Enhanced shadow for depth */
+    width: 330px;
+    max-width: 95%; /* Responsive width */
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    transform: scale(0.95);
+    opacity: 0;
+    animation: fadeInScale 0.8s ease-out forwards; /* Fade-in effect on load */
+    perspective: 1000px; /* For 3D transforms on hover */
+}
+
+/* Calculator title styling */
+.calculator-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: #333;
+    letter-spacing: 0.8px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+/* Display input field styling */
+.calculator-display {
+    width: calc(100%); /* Adjusts for padding */
+    height: 60px;
+    font-size: 32px;
+    margin-bottom: 20px;
+    padding: 0 20px;
+    text-align: right;
+    border: none;
+    border-radius: 10px;
+    background-color: #eef1f4;
+    box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.15), inset 0 -3px 5px rgba(255, 255, 255, 0.7); /* Inset shadow for depth */
+    color: #333;
+    transition: all 0.3s ease-in-out; /* Smooth transition for value changes */
+    font-weight: 500;
+    box-sizing: border-box; /* Includes padding in width calculation */
+}
+
+/* Grid for buttons container styling */
+.buttons-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns of equal width */
+    gap: 15px;
+}
+
+/* Base button styling */
+.button {
+    padding: 10px;
+    font-size: 20px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(145deg, #e0e0e0, #f0f0f0);
+    cursor: pointer;
+    box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.15), -6px -6px 12px rgba(255, 255, 255, 0.8); /* Neumorphic shadow */
+    color: #555;
+    transition: background 0.2s ease-in-out, box-shadow 0.2s ease-in-out, transform 0.1s ease-out, color 0.2s ease-in-out;
+    outline: none;
+    position: relative;
+    overflow: hidden; /* Ensures ripple stays within bounds */
+    font-weight: 500;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+/* Button hover effect */
+.button:hover {
+    background: linear-gradient(145deg, #d4d4d4, #e4e4e4);
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1), -4px -4px 8px rgba(255, 255, 255, 0.7);
+    transform: translateY(-3px) scale(1.02); /* Lift and slight grow */
+    color: #333;
+    animation: bounceEffect 0.3s forwards, tiltEffect 0.2s forwards; /* Combined animations */
+}
+
+/* Button active (click) effect */
+.button:active {
+    box-shadow: inset 3px 3px 7px rgba(0, 0, 0, 0.2), inset -3px -3px 7px rgba(255, 255, 255, 0.9); /* Inset shadow for press */
+    transform: translateY(1px) scale(0.96); /* Press down and shrink */
+    background: #e0e0e0;
+}
+
+/* Operator buttons specific styling */
+.operator {
+    color: #007bff;
+    font-weight: bold;
+}
+.operator:hover {
+    color: #0056b3;
+}
+
+/* Clear button specific styling */
+.clear-button {
+    color: #dc3545;
+    font-weight: bold;
+}
+.clear-button:hover {
+    color: #c82333;
+}
+
+/* Backspace button specific styling */
+.back-button {
+    color: #6c757d;
+    font-weight: bold;
+}
+.back-button:hover {
+    color: #5a6268;
+}
+
+/* Equal button specific styling */
+.equal-button {
+    grid-column: span 4; /* Spans all 4 columns */
+    background: linear-gradient(145deg, #007bff, #0056b3); /* Blue gradient */
+    color: white;
+    font-weight: bold;
+    box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.3), -8px -8px 16px rgba(0, 0, 0, 0.15); /* Stronger shadow */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Equal button hover effect */
+.equal-button:hover {
+    background: linear-gradient(145deg, #0056b3, #004085);
+    transform: scale(1.03); /* More pronounced grow */
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4), -10px -10px 20px rgba(0, 0, 0, 0.2);
+    animation: pulseGlow 0.5s infinite alternate, tiltEffect 0.2s forwards; /* Glow and tilt */
+}
+
+/* Equal button active effect */
+.equal-button:active {
+    background: #004085;
+    transform: scale(0.97);
+    box-shadow: inset 3px 3px 7px rgba(0, 0, 0, 0.3), inset -3px -3px 7px rgba(255, 255, 255, 0.15);
+}
+
+/* Keyframe animation for calculator fade-in on load */
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Ripple effect on button click using a pseudo-element */
+.button:active::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.4);
+    width: 120px;
+    height: 120px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    animation: ripple 0.5s ease-out forwards;
+    z-index: 1;
+}
+
+/* Specific ripple for equal button (adjust opacity due to darker background) */
+.equal-button:active::after {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Keyframe animation for ripple effect */
+@keyframes ripple {
+    to {
+        transform: translate(-50%, -50%) scale(2.5);
+        opacity: 0;
+    }
+}
+
+/* Keyframe animation for subtle bounce effect on button hover */
+@keyframes bounceEffect {
+    0%, 100% {
+        transform: translateY(-3px) scale(1.02);
+    }
+    50% {
+        transform: translateY(-5px) scale(1.03);
+    }
+}
+
+/* Keyframe animation for continuous subtle glow on equal button hover */
+@keyframes pulseGlow {
+    0% {
+        box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.3), -8px -8px 16px rgba(0, 0, 0, 0.15), 0 0 0px rgba(0, 123, 255, 0);
+    }
+    100% {
+        box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.3), -8px -8px 16px rgba(0, 0, 0, 0.15), 0 0 15px rgba(0, 123, 255, 0.7);
+    }
+}
+
+/* Keyframe animation for subtle 3D tilt effect on button hover */
+@keyframes tiltEffect {
+    0% {
+        transform: rotateX(0deg) rotateY(0deg);
+    }
+    100% {
+        transform: rotateX(2deg) rotateY(2deg);
+    }
+}
+
+/* Keyframe animation for subtle background pulse */
+@keyframes backgroundPulse {
+    0% {
+        background: linear-gradient(135deg, #f4f6f8 0%, #dbe2e8 100%);
+    }
+    50% {
+        background: linear-gradient(135deg, #e8edf2 0%, #d1d9e0 100%);
+    }
+    100% {
+        background: linear-gradient(135deg, #f4f6f8 0%, #dbe2e8 100%);
+    }
+}
+
+/* Media queries for responsiveness on smaller screens */
+@media (max-width: 400px) {
+    .calculator {
+        width: 95%;
+        padding: 15px;
+    }
+    .buttons-grid {
+        gap: 10px;
+    }
+    .button {
+        padding: 15px;
+        font-size: 18px;
+    }
+    .calculator-display {
+        font-size: 28px;
+        height: 50px;
+    }
+}
